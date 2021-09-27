@@ -19,7 +19,7 @@ jobs:
         run: |
           pip install -r tests/requirements.txt
       - name: Run tests
-        run: python tests/test_dummy.py
+        run: python -m pytest
 
   deploy:
     needs: test
