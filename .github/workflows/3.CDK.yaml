@@ -23,7 +23,7 @@ jobs:
       run: |
         npm install -g aws-cdk
         python -m pip install --upgrade pip
-        cd turma_2/2_integracao_continua_e_testes/3.CDK
+        cd 2_integracao_continua_e_testes/3.CDK
         pip install -r requirements.txt
     - name: Deploy
       env:
@@ -31,6 +31,6 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       run: |
-        cd turma_2/2_integracao_continua_e_testes/3.CDK
+        cd 2_integracao_continua_e_testes/3.CDK
         cdk synth
         cdk deploy
