@@ -22,7 +22,7 @@ jobs:
       with:
         node-version: '12'
 
-    - name: Install dependencies
+    - name: Install dependencies cdk
       run: |
         npm install -g aws-cdk
         pip install -r 3_data_lakes/requirements.txt
