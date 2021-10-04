@@ -3,7 +3,7 @@ name: Deploy Data Platform to Development
 on:
   push:
     branches:
-      - develop-*
+      - develop-cdk-datalake
 
 jobs:
   deploy:
