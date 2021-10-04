@@ -3,6 +3,7 @@ name: Deploy S3 bucket
 on:
   push:
     branches:
+      2-jinja
 
 jobs:
   deploy:
