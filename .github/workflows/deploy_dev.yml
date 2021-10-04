@@ -24,8 +24,9 @@ jobs:
 
     - name: Install dependencies for development eviroment
       run: |
+        cd 3_data_lakes
         npm install -g aws-cdk
-        pip install -r 3_data_lakes/requirements.txt
+        pip install -r requirements.txt
     - name: Deploy
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
