@@ -1,34 +1,38 @@
-name: Deploy S3 bucket
+name: Deploy Data Platform to Staging
 
 on:
   push:
     branches:
+      - staging
 
 jobs:
-  deploy:
 
+
+  deploy:
     runs-on: ubuntu-latest
+    environment: staging
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x'
+        python-version: '3.8'
+
+    - uses: actions/setup-node@v2-beta
+      with:
+        node-version: '12'
+
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
+        npm install -g aws-cdk
         pip install -r requirements.txt
-        pip install -r tests/requirements.txt
-    - name: Run tests
-      run: python -m pytest
     - name: Deploy
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-        redshiftClusterMasterUsername: ${{ secrets.redshiftClusterMasterUsername }}
-        redshiftClusterMasterUserPassword: ${{ secrets.redshiftClusterMasterUserPassword }}
-        ENVIRONMENT: production
+        ENVIRONMENT: STAGING
       run: |
-        python 2_integracao_continua_e_testes/2.jinja/deploy.py
+        cdk deploy "*" --require-approval never
